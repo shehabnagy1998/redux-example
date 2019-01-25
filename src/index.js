@@ -1,6 +1,10 @@
+// user defined files
+import 'materialize-css/dist/css/materialize.min.css'
+import $ from 'jquery';
+import M from 'materialize-css'
+// react defined files
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
