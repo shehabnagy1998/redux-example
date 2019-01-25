@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import Navbar from './Components/Navbar'
+import {BrowserRouter, Route} from 'react-router-dom';
+import Home from './Components/Home';
+import Contact from './Components/Contact';
+import About from './Components/About';
 
 class App extends Component {
 
@@ -18,9 +23,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        
-      </div>
+      <BrowserRouter>
+        <div>
+          <Navbar />
+          <Route path="/" exact component={Home} />
+          <Route path="/about" component={Contact} />
+          <Route path="/contact" component={About} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
