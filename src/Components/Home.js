@@ -1,47 +1,37 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import axios from 'axios'
+import {connect} from 'react-redux'
 
-class Home extends Component {
-
-    state = {
-        posts: []
-    };
-
-    componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/posts').then(res=> {
-            this.setState({
-                posts: res.data
-            })
-        })
-    }
-
-    render() {
-
-        const postList = this.state.posts.length ? (
-            this.state.posts.map(res=> {
-                return(
-                    <div className="card" key={res.id}>
-                        <div className="card-content">
-                            <Link to={'/posts/' + res.id } className="card-title">{res.title}</Link>
-                            <p>{res.body}</p>
-                        </div>
+const Home = ({posts})=> {
+    const postList = posts.length ? (
+        posts.map(res=> {
+            return(
+                <div className="card" key={res.id}>
+                    <div className="card-content">
+                        <Link to={'/posts/' + res.id } className="card-title">{res.title}</Link>
+                        <p>{res.body}</p>
                     </div>
-                )
-            })
-        ) : (
-            <div className="progress">
-                <div className="indeterminate"></div>
-            </div>
-        )
+                </div>
+            )
+        })
+    ) : (
+        <div className="progress">
+            <div className="indeterminate"></div>
+        </div>
+    )
 
-        return(
-            <div className="container">
-                <h1 className="center">Home</h1>
-                {postList}
-            </div>
-        )
+    return(
+        <div className="container">
+            <h1 className="center">Home</h1>
+            {postList}
+        </div>
+    )
+}
+
+const mapStateToProps = (state)=> {
+    return {
+        posts: state.posts
     }
-};
+}
 
-export default Home
+export default connect(mapStateToProps)(Home)
