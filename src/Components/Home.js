@@ -15,8 +15,8 @@ const Home = ({posts})=> {
             )
         })
     ) : (
-        <div className="progress">
-            <div className="indeterminate"></div>
+        <div className="center">
+            <h5>you dont have any posts</h5>
         </div>
     )
 
